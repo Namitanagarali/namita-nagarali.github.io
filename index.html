@@ -1,450 +1,451 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Namita Nagarali — Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Jost:ital,wght@0,200;0,300;0,400;0,500;1,300&family=Italiana&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-:root{--ivory:#FAF7F2;--ivory2:#F3EDE3;--blush:#E8C5B8;--blush2:#D4A090;--rose:#B5705B;--rose-dark:#8C4F3D;--rose-light:#CC8872;--sage:#9BAF96;--sage-light:#C8D8C4;--brown:#5C3D2E;--text:#3A2820;--text2:#6B4C3B;--text3:#9B7B6A;--border:rgba(181,112,91,0.15);--border2:rgba(181,112,91,0.28);}
-html{scroll-behavior:smooth;}
-body{background:var(--ivory);color:var(--text);font-family:'Jost',sans-serif;font-weight:300;overflow-x:hidden;}
-.cursor{position:fixed;width:8px;height:8px;background:var(--rose);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.1s;}
-.cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(181,112,91,0.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all 0.15s ease;}
-.loader{position:fixed;inset:0;background:var(--brown);z-index:9000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.2rem;transition:opacity 0.8s ease,visibility 0.8s ease;}
-.loader.hide{opacity:0;visibility:hidden;}
-.loader-name{font-family:'Gilda Display',serif;font-size:2.5rem;color:var(--ivory);letter-spacing:0.1em;opacity:0;animation:fadeUp 0.8s 0.3s forwards;}
-.loader-bar-wrap{width:160px;height:1px;background:rgba(255,255,255,0.15);}
-.loader-bar{height:100%;background:var(--blush);animation:loadBar 1.6s ease forwards;}
-@keyframes loadBar{from{width:0;}to{width:100%;}}
-nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 5vw;background:rgba(250,247,242,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:padding 0.3s,box-shadow 0.3s;}
-nav.scrolled{padding:0.8rem 5vw;box-shadow:0 4px 24px rgba(92,61,46,0.08);}
-.nav-logo{font-family:'Italiana',serif;font-size:1.3rem;color:var(--rose);text-decoration:none;}
-.nav-links{display:flex;gap:2rem;list-style:none;}
-.nav-links a{text-decoration:none;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text2);transition:color 0.3s;position:relative;}
-.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--rose);transition:width 0.3s;}
-.nav-links a:hover{color:var(--rose);}
-.nav-links a:hover::after{width:100%;}
-.nav-badge{padding:0.3rem 1rem;border:1px solid var(--rose);color:var(--rose);font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;border-radius:100px;}
-.hero{min-height:100vh;display:grid;grid-template-columns:1.15fr 0.85fr;position:relative;overflow:hidden;}
-.hero-blob{position:absolute;top:-20%;right:-10%;width:65vw;height:140vh;background:linear-gradient(148deg,var(--ivory2) 0%,var(--blush) 45%,var(--sage-light) 100%);border-radius:62% 38% 42% 58% / 52% 65% 35% 48%;opacity:0.45;pointer-events:none;animation:blobFloat 12s ease-in-out infinite;}
-.hero-blob2{position:absolute;bottom:-20%;left:-5%;width:40vw;height:80vh;background:linear-gradient(120deg,var(--sage-light) 0%,var(--blush) 100%);border-radius:45% 55% 60% 40%;opacity:0.2;pointer-events:none;animation:blobFloat 16s ease-in-out 4s infinite reverse;}
-@keyframes blobFloat{0%,100%{border-radius:62% 38% 42% 58% / 52% 65% 35% 48%;transform:translate(0,0);}50%{border-radius:45% 55% 58% 42%;transform:translate(-10px,15px);}}
-.hero-left{display:flex;flex-direction:column;justify-content:center;padding:9rem 3vw 5rem 7vw;position:relative;z-index:2;}
-.hero-eyebrow{font-size:0.63rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--rose);margin-bottom:2rem;display:flex;align-items:center;gap:0.8rem;opacity:0;animation:fadeUp 0.7s 1.9s forwards;}
-.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--rose);}
-.hero-name{font-family:'Gilda Display',serif;font-size:clamp(3.2rem,6.5vw,7.5rem);line-height:0.95;color:var(--brown);opacity:0;animation:fadeUp 0.9s 2.1s forwards;}
-.hero-name em{font-style:normal;color:var(--rose);display:block;}
-.hero-sub{font-family:'Italiana',serif;font-size:clamp(1rem,1.5vw,1.35rem);color:var(--text2);margin:1.8rem 0 2.8rem;line-height:1.8;max-width:460px;opacity:0;animation:fadeUp 0.7s 2.3s forwards;}
-.hero-pills{display:flex;flex-wrap:wrap;gap:0.45rem;margin-bottom:3rem;opacity:0;animation:fadeUp 0.7s 2.5s forwards;}
-.pill{padding:0.35rem 1rem;border-radius:100px;font-size:0.66rem;letter-spacing:0.1em;border:1px solid;transition:all 0.3s;}
-.pill-rose{border-color:var(--blush2);color:var(--rose);}
-.pill-rose:hover{background:var(--rose);border-color:var(--rose);color:white;}
-.pill-sage{border-color:var(--sage);color:var(--sage);}
-.pill-sage:hover{background:var(--sage);border-color:var(--sage);color:white;}
-.pill-brown{border-color:rgba(92,61,46,0.3);color:var(--brown);}
-.pill-brown:hover{background:var(--brown);border-color:var(--brown);color:white;}
-.hero-cta{display:inline-flex;align-items:center;gap:0.8rem;background:var(--rose);color:white;text-decoration:none;padding:1rem 2.4rem;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;border-radius:100px;transition:all 0.4s;width:fit-content;opacity:0;animation:fadeUp 0.7s 2.7s forwards;}
-.hero-cta:hover{background:var(--rose-dark);transform:translateX(4px);}
-.hero-right{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;padding:2rem;}
-.hero-cards{display:flex;flex-direction:column;gap:1.2rem;}
-.hc{background:rgba(250,247,242,0.82);backdrop-filter:blur(16px);border:1px solid var(--border2);border-radius:20px;padding:1.5rem 2rem;transition:all 0.3s;}
-.hc:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(181,112,91,0.15);}
-.hc:nth-child(1){animation:floatA 5s ease-in-out 1.5s infinite;}
-.hc:nth-child(2){margin-left:2.5rem;animation:floatB 5s ease-in-out infinite;}
-.hc:nth-child(3){animation:floatA 5s ease-in-out 3s infinite;}
-@keyframes floatA{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
-@keyframes floatB{0%,100%{transform:translateX(2.5rem) translateY(0);}50%{transform:translateX(2.5rem) translateY(-10px);}}
-.hc-num{font-family:'Gilda Display',serif;font-size:2.4rem;color:var(--rose);line-height:1;}
-.hc-lbl{font-size:0.63rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text3);margin-top:0.25rem;}
-.marquee-wrap{background:var(--rose);overflow:hidden;padding:0.9rem 0;white-space:nowrap;}
-.marquee-track{display:inline-flex;animation:marquee 22s linear infinite;}
-.marquee-item{font-family:'Italiana',serif;font-size:1.1rem;color:rgba(255,255,255,0.85);margin:0 2.5rem;}
-.marquee-dot{color:rgba(255,255,255,0.4);margin:0 0.5rem;}
-@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-section{padding:6.5rem 7vw;}
-.s-label{font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--rose);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.7rem;}
-.s-label::before{content:'';width:18px;height:1px;background:var(--rose);}
-.s-title{font-family:'Gilda Display',serif;font-size:clamp(2rem,4vw,3.8rem);color:var(--brown);line-height:1.1;margin-bottom:0.7rem;}
-.s-title em{font-style:italic;color:var(--rose);}
-.s-bar{width:38px;height:1px;background:var(--rose);margin-bottom:3.5rem;opacity:0.5;}
-#about{background:var(--ivory2);display:grid;grid-template-columns:1fr 1.1fr;gap:5rem;align-items:start;}
-.about-text p{font-size:0.97rem;line-height:1.95;color:var(--text2);margin-bottom:1.2rem;}
-.about-text strong{color:var(--brown);font-weight:500;}
-.about-text em{color:var(--rose);font-style:normal;}
-.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem;}
-.stat-box{background:var(--ivory);border:1px solid var(--border2);border-radius:16px;padding:1.4rem;text-align:center;transition:all 0.3s;}
-.stat-box:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(181,112,91,0.12);}
-.stat-num{font-family:'Gilda Display',serif;font-size:2.2rem;color:var(--rose);line-height:1;}
-.stat-lbl{font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text3);margin-top:0.3rem;}
-.highlights{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
-.hl-box{background:var(--ivory);border:1px solid var(--border);border-radius:18px;padding:1.6rem;transition:all 0.35s;}
-.hl-box:hover{border-color:var(--blush2);transform:translateY(-4px);box-shadow:0 12px 32px rgba(181,112,91,0.1);}
-.hl-icon{font-size:1.4rem;margin-bottom:0.7rem;}
-.hl-title{font-family:'Gilda Display',serif;font-size:1rem;color:var(--brown);margin-bottom:0.35rem;}
-.hl-desc{font-size:0.76rem;color:var(--text3);line-height:1.65;}
-#experience{background:var(--ivory);}
-.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
-.exp-card{background:var(--ivory2);border:1px solid var(--border);border-radius:20px;padding:1.9rem;transition:all 0.35s;position:relative;overflow:hidden;}
-.exp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--rose),var(--blush),var(--sage));transform:scaleX(0);transform-origin:left;transition:transform 0.45s;}
-.exp-card:hover::before{transform:scaleX(1);}
-.exp-card:hover{border-color:var(--blush2);box-shadow:0 12px 36px rgba(181,112,91,0.1);transform:translateY(-4px);}
-.exp-card.featured{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;background:linear-gradient(135deg,var(--rose) 0%,var(--rose-dark) 100%);border-color:transparent;}
-.exp-card.featured::before{transform:scaleX(1);background:linear-gradient(90deg,rgba(255,255,255,0.3),rgba(255,255,255,0.05));}
-.exp-card.featured .exp-role,.exp-card.featured .exp-period{color:rgba(255,255,255,0.92);}
-.exp-card.featured .exp-company{color:rgba(255,255,255,0.65);}
-.exp-card.featured .exp-bullet{color:rgba(255,255,255,0.8);}
-.exp-card.featured .exp-bullet::before{background:rgba(255,255,255,0.5);}
-.exp-card.featured .exp-badge{background:rgba(255,255,255,0.18);color:white;}
-.exp-badge{display:inline-block;padding:0.22rem 0.7rem;background:rgba(181,112,91,0.1);color:var(--rose);font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;border-radius:100px;margin-bottom:1rem;}
-.exp-role{font-family:'Gilda Display',serif;font-size:1.18rem;color:var(--brown);margin-bottom:0.2rem;line-height:1.25;}
-.exp-company{font-size:0.8rem;color:var(--rose);font-weight:500;margin-bottom:0.15rem;}
-.exp-period{font-size:0.68rem;color:var(--text3);letter-spacing:0.05em;margin-bottom:1.1rem;}
-.exp-bullets{list-style:none;}
-.exp-bullet{font-size:0.8rem;color:var(--text2);line-height:1.72;margin-bottom:0.45rem;padding-left:1.1rem;position:relative;}
-.exp-bullet::before{content:'';position:absolute;left:0;top:0.64em;width:4px;height:4px;border-radius:50%;background:var(--rose);}
-.exp-wide{grid-column:span 2;}
-.exp-wide .exp-bullets{display:grid;grid-template-columns:1fr 1fr;gap:0 2.5rem;}
-#work{background:var(--ivory2);}
-.work-tabs{display:flex;gap:0.5rem;margin-bottom:3rem;flex-wrap:wrap;}
-.work-tab{padding:0.72rem 1.6rem;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;border:1px solid var(--border2);background:transparent;color:var(--text2);transition:all 0.3s;font-family:'Jost',sans-serif;border-radius:100px;}
-.work-tab.active{background:var(--rose);color:white;border-color:var(--rose);}
-.work-tab:hover:not(.active){border-color:var(--rose);color:var(--rose);}
-.work-panel{display:none;}
-.work-panel.active{display:block;animation:panelIn 0.4s ease;}
-@keyframes panelIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
-.poster-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;align-items:start;}
-.poster-item{border-radius:16px;overflow:hidden;border:1px solid var(--border);background:var(--ivory);transition:all 0.4s;cursor:pointer;}
-.poster-item:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 20px 48px rgba(92,61,46,0.15);}
-.poster-item img{width:100%;height:auto;display:block;}
-.video-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;}
-.video-item{border-radius:16px;overflow:hidden;border:1px solid var(--border);background:#120a06;transition:all 0.4s;aspect-ratio:9/16;}
-.video-item:hover{transform:translateY(-5px);box-shadow:0 20px 48px rgba(92,61,46,0.2);}
-.video-item iframe{width:100%;height:100%;border:none;display:block;}
-.ai-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
-.ai-item{border-radius:16px;overflow:hidden;border:1px solid var(--border);background:#120a06;transition:all 0.4s;aspect-ratio:9/16;}
-.ai-item:hover{transform:translateY(-5px);box-shadow:0 20px 48px rgba(92,61,46,0.2);}
-.ai-item iframe{width:100%;height:100%;border:none;display:block;}
-.insta-block{display:grid;grid-template-columns:1fr 1.6fr;gap:3rem;align-items:center;background:var(--ivory);border:1px solid var(--border2);border-radius:24px;padding:3.5rem;}
-.insta-visual{background:linear-gradient(135deg,var(--blush) 0%,var(--sage-light) 100%);border-radius:20px;height:200px;display:flex;align-items:center;justify-content:center;font-size:5rem;}
-.insta-text h3{font-family:'Gilda Display',serif;font-size:1.9rem;color:var(--brown);margin-bottom:0.5rem;}
-.insta-text p{font-size:0.88rem;color:var(--text2);line-height:1.85;margin-bottom:1.5rem;}
-.insta-link{display:inline-flex;align-items:center;gap:0.5rem;padding:0.8rem 1.7rem;background:var(--rose);color:white;text-decoration:none;font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;border-radius:100px;transition:all 0.3s;}
-.insta-link:hover{background:var(--rose-dark);}
-#skills{background:var(--ivory);}
-.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;}
-.skill-group{background:var(--ivory2);border:1px solid var(--border);border-radius:18px;padding:1.6rem;transition:all 0.3s;}
-.skill-group:hover{border-color:var(--blush2);transform:translateY(-3px);box-shadow:0 10px 28px rgba(181,112,91,0.1);}
-.skill-group-title{font-family:'Gilda Display',serif;font-size:0.95rem;color:var(--rose);margin-bottom:1.1rem;}
-.skill-tag{display:inline-block;padding:0.28rem 0.78rem;margin:0.2rem 0.12rem;font-size:0.68rem;background:var(--ivory);color:var(--text2);border:1px solid var(--border);border-radius:8px;transition:all 0.25s;}
-.skill-tag:hover{background:var(--rose);color:white;border-color:var(--rose);}
-.lang-row{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2.5rem;}
-.lang-card{background:var(--ivory2);border:1px solid var(--border);border-radius:14px;padding:1rem 1.6rem;text-align:center;transition:all 0.3s;}
-.lang-card:hover{border-color:var(--rose);transform:translateY(-3px);}
-.lang-name{font-family:'Gilda Display',serif;font-size:1.05rem;color:var(--brown);}
-.lang-level{font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text3);margin-top:0.2rem;}
-#education{background:var(--ivory2);}
-.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
-.edu-card{background:var(--ivory);border:1px solid var(--border);border-radius:20px;padding:2rem;transition:all 0.35s;}
-.edu-card:hover{border-color:var(--blush2);transform:translateY(-3px);box-shadow:0 12px 30px rgba(181,112,91,0.1);}
-.edu-badge{display:inline-block;background:rgba(181,112,91,0.1);color:var(--rose);font-size:0.6rem;letter-spacing:0.13em;text-transform:uppercase;padding:0.22rem 0.7rem;border-radius:100px;margin-bottom:1rem;}
-.edu-degree{font-family:'Gilda Display',serif;font-size:1.3rem;color:var(--brown);margin-bottom:0.3rem;}
-.edu-inst{font-size:0.82rem;color:var(--rose);font-weight:500;margin-bottom:0.8rem;}
-.edu-focus{font-size:0.78rem;color:var(--text3);line-height:1.72;font-style:italic;}
-#contact{background:var(--brown);color:white;text-align:center;position:relative;overflow:hidden;padding:8rem 7vw;}
-#contact::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 25% 50%,rgba(232,197,184,0.12) 0%,transparent 55%),radial-gradient(ellipse at 75% 50%,rgba(155,175,150,0.1) 0%,transparent 55%);pointer-events:none;}
-#contact .s-label{color:var(--blush);justify-content:center;}
-#contact .s-label::before{background:var(--blush);}
-#contact .s-title{color:white;}
-#contact .s-title em{color:var(--blush);}
-#contact .s-bar{background:var(--blush);margin:0 auto 2rem;}
-.contact-desc{font-family:'Italiana',serif;font-size:1.3rem;color:rgba(255,255,255,0.55);max-width:440px;margin:0 auto 3.5rem;line-height:1.85;}
-.contact-links{display:flex;justify-content:center;flex-wrap:wrap;gap:1rem;position:relative;z-index:1;}
-.contact-btn{display:inline-flex;align-items:center;gap:0.6rem;padding:1rem 2rem;font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;font-family:'Jost',sans-serif;border-radius:100px;}
-.cb-rose{background:var(--rose);color:white;border:1px solid var(--rose);}
-.cb-rose:hover{background:var(--rose-light);}
-.cb-out{background:transparent;color:rgba(255,255,255,0.82);border:1px solid rgba(255,255,255,0.2);}
-.cb-out:hover{border-color:var(--blush);color:var(--blush);}
-.footer-note{margin-top:5rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.08);font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,255,255,0.25);position:relative;z-index:1;}
-.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.8s ease,transform 0.8s ease;}
-.reveal.visible{opacity:1;transform:translateY(0);}
-.reveal-left{opacity:0;transform:translateX(-28px);transition:opacity 0.8s ease,transform 0.8s ease;}
-.reveal-left.visible{opacity:1;transform:translateX(0);}
-.reveal-right{opacity:0;transform:translateX(28px);transition:opacity 0.8s ease,transform 0.8s ease;}
-.reveal-right.visible{opacity:1;transform:translateX(0);}
-@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
-@media(max-width:1024px){.skills-grid{grid-template-columns:1fr 1fr;}}
-@media(max-width:768px){
-  .cursor,.cursor-ring{display:none;}
-  nav{padding:1rem 5vw;}
-  .nav-links{display:none;}
-  .hero{grid-template-columns:1fr;}
-  .hero-left{padding:8rem 5vw 4rem;}
-  .hero-right{display:none;}
-  section{padding:4rem 5vw;}
-  #about{grid-template-columns:1fr;gap:2.5rem;}
-  .exp-grid{grid-template-columns:1fr;}
-  .exp-card.featured{grid-column:span 1;grid-template-columns:1fr;}
-  .exp-wide{grid-column:span 1;}
-  .exp-wide .exp-bullets{grid-template-columns:1fr;}
-  .poster-grid{grid-template-columns:1fr 1fr;}
-  .video-grid{grid-template-columns:1fr;}
-  .ai-grid{grid-template-columns:1fr 1fr;}
-  .skills-grid{grid-template-columns:1fr 1fr;}
-  .edu-grid{grid-template-columns:1fr;}
-  .highlights{grid-template-columns:1fr;}
-  .insta-block{grid-template-columns:1fr;}
-  .insta-visual{height:140px;}
-}
-@media(max-width:480px){.poster-grid{grid-template-columns:1fr;}.ai-grid{grid-template-columns:1fr;}.hero-name{font-size:3rem;}}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #F7F5F1; --surface: #FFFFFF; --ink: #1A1814;
+    --muted: #6B6760; --accent: #B8845A; --accent-light: #F0E8DF;
+    --border: #E4E0D9; --tag-bg: #EEE9E2;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink);
+    font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; cursor: auto;
+  }
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(247,245,241,0.92); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border); padding: 0 20px;
+  }
+  .nav-inner {
+    max-width: 760px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; height: 56px;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 600;
+    color: var(--ink); text-decoration: none; letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 24px; list-style: none; }
+  .nav-links a {
+    font-size: 0.8rem; font-weight: 500; color: var(--muted); text-decoration: none;
+    letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  @media(max-width:520px) { .nav-links { display: none; } }
+  .hero { padding: 72px 20px 56px; max-width: 760px; margin: 0 auto; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--accent-light); color: var(--accent);
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin-bottom: 24px;
+  }
+  .hero-badge span { width:6px;height:6px;background:var(--accent);border-radius:50%;display:inline-block;animation:pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 7vw, 3.6rem); font-weight: 600;
+    line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 20px;
+  }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero-sub { font-size: 1rem; color: var(--muted); max-width: 520px; line-height: 1.7; margin-bottom: 32px; }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 12px 24px; border-radius: 6px;
+    font-size: 0.85rem; font-weight: 500; text-decoration: none;
+    transition: all 0.2s; cursor: pointer; border: none; font-family: 'DM Sans', sans-serif;
+  }
+  .btn-primary { background: var(--ink); color: #fff; }
+  .btn-primary:hover { background: #333; }
+  .btn-outline { background: transparent; color: var(--ink); border: 1.5px solid var(--border); }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+  .hero-stats {
+    display: flex; gap: 32px; margin-top: 48px;
+    padding-top: 32px; border-top: 1px solid var(--border); flex-wrap: wrap;
+  }
+  .stat-num { font-family:'Cormorant Garamond',serif; font-size:2rem; font-weight:600; color:var(--ink); line-height:1; }
+  .stat-label { font-size:0.78rem; color:var(--muted); margin-top:4px; }
+  .section { padding: 64px 20px; max-width: 760px; margin: 0 auto; }
+  .section-divider { border:none; border-top:1px solid var(--border); margin:0 20px; }
+  .section-tag { font-size:0.7rem; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
+  .section-title { font-family:'Cormorant Garamond',serif; font-size:clamp(1.6rem,5vw,2.2rem); font-weight:600; line-height:1.2; margin-bottom:32px; }
+  .section-title em { font-style:italic; }
+  .about-text { font-size:0.95rem; color:var(--muted); line-height:1.8; }
+  .about-text strong { color:var(--ink); font-weight:500; }
+  .about-cards { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:24px; }
+  .about-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:18px 16px; }
+  .about-card-icon { font-size:1.2rem; margin-bottom:8px; }
+  .about-card-title { font-size:0.82rem; font-weight:500; margin-bottom:4px; }
+  .about-card-text { font-size:0.76rem; color:var(--muted); line-height:1.5; }
+  .exp-list { display:flex; flex-direction:column; }
+  .exp-item { display:grid; grid-template-columns:auto 1fr; gap:0 20px; padding:28px 0; border-bottom:1px solid var(--border); }
+  .exp-item:last-child { border-bottom:none; }
+  .exp-dot-col { display:flex; flex-direction:column; align-items:center; padding-top:4px; }
+  .exp-dot { width:10px; height:10px; border-radius:50%; background:var(--accent); flex-shrink:0; }
+  .exp-line { width:1px; background:var(--border); flex:1; margin-top:8px; }
+  .exp-item:last-child .exp-line { display:none; }
+  .exp-badge { display:inline-block; font-size:0.65rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:3px 8px; border-radius:4px; margin-bottom:6px; }
+  .badge-founder { background:#FEF3E2; color:#B45309; }
+  .badge-intern { background:#EFF6FF; color:#1D4ED8; }
+  .badge-sales { background:#F0FDF4; color:#15803D; }
+  .exp-role { font-size:0.98rem; font-weight:500; margin-bottom:2px; }
+  .exp-company { font-size:0.84rem; color:var(--muted); margin-bottom:2px; }
+  .exp-period { font-size:0.76rem; color:var(--muted); margin-bottom:12px; }
+  .exp-points { list-style:none; display:flex; flex-direction:column; gap:6px; }
+  .exp-points li { font-size:0.84rem; color:var(--muted); line-height:1.5; padding-left:14px; position:relative; }
+  .exp-points li::before { content:'—'; position:absolute; left:0; color:var(--accent); font-size:0.7rem; top:3px; }
+  .skills-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media(max-width:480px) { .skills-grid { grid-template-columns:1fr; } .about-cards { grid-template-columns:1fr; } }
+  .skill-group { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:20px; }
+  .skill-group-label { font-size:0.72rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--accent); margin-bottom:12px; }
+  .skill-tags { display:flex; flex-wrap:wrap; gap:6px; }
+  .tag { background:var(--tag-bg); color:var(--ink); font-size:0.76rem; padding:5px 10px; border-radius:5px; }
+  .lang-row { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+  .lang-pill { display:flex; align-items:center; gap:8px; background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:10px 16px; }
+  .lang-name { font-size:0.84rem; font-weight:500; }
+  .lang-level { font-size:0.72rem; color:var(--muted); }
+  .portfolio-tabs { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:24px; }
+  .tab-btn { font-size:0.78rem; font-weight:500; padding:7px 14px; border-radius:6px; border:1.5px solid var(--border); background:transparent; color:var(--muted); cursor:pointer; transition:all 0.2s; font-family:'DM Sans',sans-serif; }
+  .tab-btn.active { background:var(--ink); color:#fff; border-color:var(--ink); }
+  .portfolio-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  @media(max-width:480px) { .portfolio-grid { grid-template-columns:1fr; } }
+  .port-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; overflow:hidden; display:none; }
+  .port-card.visible { display:block; }
+  .port-img { width:100%; aspect-ratio:4/3; object-fit:cover; display:block; }
+  .port-video-wrap { width:100%; aspect-ratio:16/9; background:#000; }
+  .port-video-wrap iframe { width:100%; height:100%; border:none; display:block; }
+  .port-info { padding:12px; }
+  .port-label { font-size:0.75rem; color:var(--muted); }
+  .wrapura-card { grid-column:1/-1; background:var(--accent-light); border:1px solid #DFC4A8; border-radius:10px; padding:24px; display:none; align-items:center; gap:20px; flex-wrap:wrap; }
+  .wrapura-card.visible { display:flex; }
+  .wrapura-icon { font-size:2.5rem; }
+  .wrapura-title { font-size:1rem; font-weight:500; margin-bottom:4px; }
+  .wrapura-text { font-size:0.84rem; color:var(--muted); margin-bottom:12px; line-height:1.6; }
+  .edu-list { display:flex; flex-direction:column; gap:16px; }
+  .edu-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:22px; display:flex; gap:16px; align-items:flex-start; }
+  .edu-year { font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:600; color:var(--accent); line-height:1; min-width:52px; padding-top:2px; }
+  .edu-degree { font-size:0.95rem; font-weight:500; margin-bottom:3px; }
+  .edu-school { font-size:0.82rem; color:var(--muted); margin-bottom:8px; }
+  .edu-desc { font-size:0.8rem; color:var(--muted); line-height:1.6; }
+  .contact-block { background:var(--ink); border-radius:16px; padding:48px 32px; text-align:center; color:#fff; }
+  .contact-title { font-family:'Cormorant Garamond',serif; font-size:clamp(1.6rem,5vw,2.2rem); font-weight:600; margin-bottom:12px; line-height:1.2; }
+  .contact-sub { font-size:0.9rem; color:rgba(255,255,255,0.6); margin-bottom:32px; }
+  .contact-links { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; }
+  .contact-link { display:flex; align-items:center; gap:8px; background:rgba(255,255,255,0.08); color:#fff; text-decoration:none; padding:11px 20px; border-radius:8px; font-size:0.84rem; border:1px solid rgba(255,255,255,0.12); transition:background 0.2s; }
+  .contact-link:hover { background:rgba(255,255,255,0.15); }
+  footer { text-align:center; padding:32px 20px; font-size:0.75rem; color:var(--muted); }
+  .fade-in { opacity:0; transform:translateY(16px); transition:opacity 0.5s, transform 0.5s; }
+  .fade-in.visible { opacity:1; transform:none; }
 </style>
 </head>
 <body>
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-<div class="loader" id="loader">
-  <div class="loader-name">Namita Nagarali</div>
-  <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
-</div>
-<nav id="nav">
-  <a class="nav-logo" href="#">Namita Nagarali</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <span class="nav-badge">Open for Work</span>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">Namita Nagarali</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
 </nav>
-<section class="hero">
-  <div class="hero-blob"></div>
-  <div class="hero-blob2"></div>
-  <div class="hero-left">
-    <p class="hero-eyebrow">Social Media · Content · AI Video · Digital Marketing</p>
-    <h1 class="hero-name">Namita<em>Nagarali</em></h1>
-    <p class="hero-sub">I build brands, create content that stops the scroll, and bring ideas to life through design and storytelling.</p>
-    <div class="hero-pills">
-      <span class="pill pill-rose">Social Media Management</span>
-      <span class="pill pill-rose">Content Creation</span>
-      <span class="pill pill-sage">AI Video Editing</span>
-      <span class="pill pill-brown">Digital Marketing</span>
-      <span class="pill pill-sage">Brand Building</span>
-      <span class="pill pill-rose">Graphic Design</span>
-    </div>
-    <a href="#contact" class="hero-cta">Open for Work →</a>
+
+<div class="hero fade-in">
+  <div class="hero-badge"><span></span> Open for Work</div>
+  <h1>Namita<br><em>Nagarali</em></h1>
+  <p class="hero-sub">Creative professional based in Belgaum, Karnataka — with hands-on experience in digital marketing, content creation, brand building, and design. Currently pursuing a BA in Psychology.</p>
+  <div class="hero-actions">
+    <a href="#contact" class="btn btn-primary">Get in Touch</a>
+    <a href="#work" class="btn btn-outline">View Work</a>
   </div>
-  <div class="hero-right">
-    <div class="hero-cards">
-      <div class="hc"><div class="hc-num">2+</div><div class="hc-lbl">Years Brand Building</div></div>
-      <div class="hc"><div class="hc-num">3</div><div class="hc-lbl">Internships Completed</div></div>
-      <div class="hc"><div class="hc-num">4</div><div class="hc-lbl">Languages Spoken</div></div>
-    </div>
+  <div class="hero-stats">
+    <div><div class="stat-num">2+</div><div class="stat-label">Years of Experience</div></div>
+    <div><div class="stat-num">3</div><div class="stat-label">Internships Completed</div></div>
+    <div><div class="stat-num">4</div><div class="stat-label">Languages Spoken</div></div>
   </div>
-</section>
-<div class="marquee-wrap"><div class="marquee-track">
-  <span class="marquee-item">Social Media Management</span><span class="marquee-dot">✦</span>
-  <span class="marquee-item">Content Creation</span><span class="marquee-dot">✦</span>
-  <span class="marquee-item">AI Video Editing</span><span class="marquee-dot">✦</span>
-  <span class="marquee-item">Digital Marketing</span><span class="marquee-dot">✦</span>
-  <span class="marquee-item">Brand Building</span><span class="marquee-dot">✦</span>
-  <span class="marquee-item">Graphic Design</span><span class="marquee-dot">✦</span>
-  <span class="marquee-item">Open for Work</span><span class="marquee-dot">✦</span>
-  <span class="marquee-item">Social Media Management</span><span class="marquee-dot">✦</span>
-  <span class="marquee-item">Content Creation</span><span class="marquee-dot">✦</span>
-  <span class="marquee-item">AI Video Editing</span><span class="marquee-dot">✦</span>
-  <span class="marquee-item">Digital Marketing</span><span class="marquee-dot">✦</span>
-  <span class="marquee-item">Brand Building</span><span class="marquee-dot">✦</span>
-  <span class="marquee-item">Graphic Design</span><span class="marquee-dot">✦</span>
-  <span class="marquee-item">Open for Work</span><span class="marquee-dot">✦</span>
-</div></div>
-<section id="about">
-  <div class="reveal-left">
-    <p class="s-label">About Me</p>
-    <h2 class="s-title">Creative. <em>Curious.</em> Real.</h2>
-    <div class="s-bar"></div>
-    <div class="about-text">
-      <p>I'm a <strong>digital marketing professional and content creator</strong> based in Belgaum, Karnataka — currently pursuing a <strong>BA in Psychology</strong> at Kristu Jayanti College, Bangalore.</p>
-      <p>In 2024, I founded <em>WrapAura</em>, a handmade crochet brand that I built and ran completely on my own — from product development to Instagram marketing and live exhibition sales. That gave me a real, ground-level understanding of what it takes to build a brand from nothing.</p>
-      <p>Since then I've interned at a digital marketing agency, a retail brand, and developed a skill in <strong>AI video editing</strong> — always learning, always creating. I'm <strong>open for work</strong> in remote roles across social media, content, and digital marketing.</p>
+</div>
+
+<hr class="section-divider">
+
+<div class="section fade-in" id="about">
+  <div class="section-tag">About Me</div>
+  <div class="section-title">Creative. Curious. <em>Driven.</em></div>
+  <p class="about-text">I'm a <strong>digital marketing and content professional</strong> who started building real skills early — founding my own brand at 18, completing multiple internships, and developing a grounded understanding of what makes content and campaigns actually work.</p>
+  <p class="about-text" style="margin-top:12px;">My background spans <strong>social media management, graphic design, AI video editing, brand strategy, and direct sales</strong>. I'm currently pursuing a <strong>BA in Psychology</strong> at Kristu Jayanti College, Bangalore — which deepens how I think about communication, behaviour, and audience understanding.</p>
+  <div class="about-cards">
+    <div class="about-card">
+      <div class="about-card-icon">🏷️</div>
+      <div class="about-card-title">Brand Builder</div>
+      <div class="about-card-text">Founded WrapAura — ran product, marketing, and sales independently from day one.</div>
     </div>
-    <div class="stat-row">
-      <div class="stat-box"><div class="stat-num">2+</div><div class="stat-lbl">Years Running WrapAura</div></div>
-      <div class="stat-box"><div class="stat-num">3</div><div class="stat-lbl">Internships Done</div></div>
-      <div class="stat-box"><div class="stat-num">4</div><div class="stat-lbl">Languages Spoken</div></div>
+    <div class="about-card">
+      <div class="about-card-icon">📱</div>
+      <div class="about-card-title">Content Creator</div>
+      <div class="about-card-text">Reels, carousels, stories — platform-native content built for real engagement.</div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-icon">🎨</div>
+      <div class="about-card-title">Graphic Designer</div>
+      <div class="about-card-text">Visual storytelling through Canva — brand kits, campaign creatives, social assets.</div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-icon">🧠</div>
+      <div class="about-card-title">Psychology-Backed</div>
+      <div class="about-card-text">Studying human behaviour and communication — applied directly to marketing.</div>
     </div>
   </div>
-  <div class="highlights reveal-right">
-    <div class="hl-box"><div class="hl-icon">🧶</div><div class="hl-title">Brand Founder</div><div class="hl-desc">Founded WrapAura in 2024 — products, branding, Instagram, and live sales, all self-managed.</div></div>
-    <div class="hl-box"><div class="hl-icon">📱</div><div class="hl-title">Content Creator</div><div class="hl-desc">Reels, carousels, stories — platform-native content made for real engagement.</div></div>
-    <div class="hl-box"><div class="hl-icon">🤖</div><div class="hl-title">AI Video Editor</div><div class="hl-desc">Creating and editing AI-generated videos built for modern social media audiences.</div></div>
-    <div class="hl-box"><div class="hl-icon">🧠</div><div class="hl-title">Psychology-Backed</div><div class="hl-desc">Studying consumer behaviour and communication — applied directly to marketing work.</div></div>
-  </div>
-</section>
-<section id="experience">
-  <div class="reveal">
-    <p class="s-label">Work Experience</p>
-    <h2 class="s-title">What I've <em>Built & Done</em></h2>
-    <div class="s-bar"></div>
-  </div>
-  <div class="exp-grid">
-    <div class="exp-card featured reveal">
+</div>
+
+<hr class="section-divider">
+
+<div class="section fade-in" id="experience">
+  <div class="section-tag">Experience</div>
+  <div class="section-title">What I've <em>Built & Done</em></div>
+  <div class="exp-list">
+    <div class="exp-item">
+      <div class="exp-dot-col"><div class="exp-dot"></div><div class="exp-line"></div></div>
       <div>
-        <span class="exp-badge">⭐ Founder</span>
+        <span class="exp-badge badge-founder">Founder</span>
         <div class="exp-role">Founder & Social Media Manager</div>
         <div class="exp-company">WrapAura — Handmade Crochet Brand</div>
         <div class="exp-period">Jan 2024 – Present · Belgaum, KA</div>
-        <ul class="exp-bullets">
-          <li class="exp-bullet">Founded a handmade crochet brand — managing product development, pricing, inventory, and all operations independently.</li>
-          <li class="exp-bullet">Built and manage the brand's Instagram presence (@wrap__aura) — product photography, reels, and promotional stories.</li>
-          <li class="exp-bullet">Designed all brand creatives in Canva, maintaining a consistent visual identity across every touchpoint.</li>
+        <ul class="exp-points">
+          <li>Founded and managed a handmade crochet brand — product development, pricing, inventory, and all operations independently.</li>
+          <li>Built and managed the brand's Instagram presence — product photography, reels, and promotional content.</li>
+          <li>Designed all brand creatives in Canva, maintaining consistent visual identity across every touchpoint.</li>
+          <li>Managed end-to-end customer communication via DMs, building repeat interest and loyalty.</li>
+          <li>Represented the brand at offline exhibitions — live product display and on-the-spot sales.</li>
         </ul>
       </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-dot-col"><div class="exp-dot"></div><div class="exp-line"></div></div>
       <div>
-        <ul class="exp-bullets" style="margin-top:2.5rem;">
-          <li class="exp-bullet">Managed end-to-end customer communication via Instagram DMs, building repeat interest and loyalty.</li>
-          <li class="exp-bullet">Represented the brand at offline exhibitions — product display, walk-in customers, and closed sales on the spot.</li>
+        <span class="exp-badge badge-intern">Internship</span>
+        <div class="exp-role">Graphic Design Intern</div>
+        <div class="exp-company">Shoppin — Social Media & Retail Brand</div>
+        <div class="exp-period">2025 · Belgaum, KA</div>
+        <ul class="exp-points">
+          <li>Designed social media carousels and edited reels for the brand's social accounts.</li>
+          <li>Produced promotional assets aligned with brand guidelines on consistent deadlines.</li>
+          <li>Hands-on experience with platform-specific design for social commerce.</li>
         </ul>
       </div>
     </div>
-    <div class="exp-card reveal">
-      <span class="exp-badge">Internship</span>
-      <div class="exp-role">Graphic Design Intern</div>
-      <div class="exp-company">Shoppin (Social Media & Retail Brand)</div>
-      <div class="exp-period">2025 · Belgaum, KA</div>
-      <ul class="exp-bullets">
-        <li class="exp-bullet">Designed social media carousels and edited reels for the brand's TikTok account.</li>
-        <li class="exp-bullet">Produced promotional assets aligned with brand guidelines on consistent deadlines.</li>
-        <li class="exp-bullet">Hands-on experience with platform-specific design for social commerce.</li>
-      </ul>
+    <div class="exp-item">
+      <div class="exp-dot-col"><div class="exp-dot"></div><div class="exp-line"></div></div>
+      <div>
+        <span class="exp-badge badge-intern">Internship</span>
+        <div class="exp-role">Digital Marketing Intern</div>
+        <div class="exp-company">VRNN Digital Marketing Agency</div>
+        <div class="exp-period">2025 · Belgaum, KA</div>
+        <ul class="exp-points">
+          <li>Managed content planning and scheduling for client accounts across Instagram and Facebook.</li>
+          <li>Designed branded posts and campaign creatives using Canva for multiple clients.</li>
+          <li>Caption writing, hashtag research, and content calendar coordination.</li>
+        </ul>
+      </div>
     </div>
-    <div class="exp-card reveal">
-      <span class="exp-badge">Internship</span>
-      <div class="exp-role">Digital Marketing Intern</div>
-      <div class="exp-company">VRNN Digital Marketing Agency</div>
-      <div class="exp-period">2025 · Belgaum, KA</div>
-      <ul class="exp-bullets">
-        <li class="exp-bullet">Managed content planning and scheduling for client accounts across Instagram and Facebook.</li>
-        <li class="exp-bullet">Designed branded posts and campaign creatives using Canva for multiple clients.</li>
-        <li class="exp-bullet">Caption writing, hashtag research, and content calendar coordination.</li>
-      </ul>
-    </div>
-    <div class="exp-card exp-wide reveal">
-      <span class="exp-badge">Sales</span>
-      <div class="exp-role">Retail Sales Executive</div>
-      <div class="exp-company">Offline Exhibition & Stall Events</div>
-      <div class="exp-period">2024–2025 · Belgaum, KA</div>
-      <ul class="exp-bullets">
-        <li class="exp-bullet">Set up and managed product displays, optimising layout to attract and retain customers.</li>
-        <li class="exp-bullet">Converted walk-in visitors into buyers through confident, direct communication.</li>
-        <li class="exp-bullet">Handled live transactions and real-time objections under pressure.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-<section id="work">
-  <div class="reveal">
-    <p class="s-label">Portfolio</p>
-    <h2 class="s-title">My <em>Work</em></h2>
-    <div class="s-bar"></div>
-  </div>
-  <div class="work-tabs reveal">
-    <button class="work-tab active" onclick="switchTab(this,'vrnn-posters')">VRNN — Posters</button>
-    <button class="work-tab" onclick="switchTab(this,'vrnn-videos')">VRNN — Videos</button>
-    <button class="work-tab" onclick="switchTab(this,'ai-videos')">AI Videos</button>
-    <button class="work-tab" onclick="switchTab(this,'wrapaura')">WrapAura</button>
-  </div>
-  <div class="work-panel active" id="panel-vrnn-posters">
-    <div class="poster-grid">
-      <div class="poster-item"><img src="poster1.png" alt=""/></div>
-      <div class="poster-item"><img src="poster2.png" alt=""/></div>
-      <div class="poster-item"><img src="poster3.png" alt=""/></div>
-    </div>
-  </div>
-  <div class="work-panel" id="panel-vrnn-videos">
-    <div class="video-grid">
-      <div class="video-item"><iframe src="https://drive.google.com/file/d/1aDM1Ddv9rWv30krlHqMk42XsquQiYjsU/preview" allow="autoplay" allowfullscreen></iframe></div>
-      <div class="video-item"><iframe src="https://drive.google.com/file/d/1umm55ZO-ahPeHg84EsDaas_sfi8i6k51/preview" allow="autoplay" allowfullscreen></iframe></div>
-      <div class="video-item"><iframe src="https://drive.google.com/file/d/175FQoJ9WBb_a1bEw8a6-hlegbzCjQ6_M/preview" allow="autoplay" allowfullscreen></iframe></div>
-      <div class="video-item"><iframe src="https://drive.google.com/file/d/1r2jvqOjpZzITfnKRJ8RMCfjWMAJJUSwa/preview" allow="autoplay" allowfullscreen></iframe></div>
-    </div>
-  </div>
-  <div class="work-panel" id="panel-ai-videos">
-    <div class="ai-grid">
-      <div class="ai-item"><iframe src="https://drive.google.com/file/d/1rSPlDFG4adZkOgRaliqxLidwm0qQaUTn/preview" allow="autoplay" allowfullscreen></iframe></div>
-      <div class="ai-item"><iframe src="https://drive.google.com/file/d/1Xi2J8tmFFEZgnXbxOj5RBBTz7MI87zbx/preview" allow="autoplay" allowfullscreen></iframe></div>
-      <div class="ai-item"><iframe src="https://drive.google.com/file/d/1xJBWGQFeh2vz6pR66vXkrISMh7XKZTI2/preview" allow="autoplay" allowfullscreen></iframe></div>
-      <div class="ai-item"><iframe src="https://drive.google.com/file/d/1sRL4Mcqiw9xjTIMmGHxH1FfNCcENtli1/preview" allow="autoplay" allowfullscreen></iframe></div>
-      <div class="ai-item"><iframe src="https://drive.google.com/file/d/1yPF5Jo91VImyPne9DyDXpUUXL5WPiIuu/preview" allow="autoplay" allowfullscreen></iframe></div>
-      <div class="ai-item"><iframe src="https://drive.google.com/file/d/1spH7zjlcb2Y0uu8oOFvFLIp2XPPKiI1j/preview" allow="autoplay" allowfullscreen></iframe></div>
-    </div>
-  </div>
-  <div class="work-panel" id="panel-wrapaura">
-    <div class="insta-block">
-      <div class="insta-visual">🧶</div>
-      <div class="insta-text">
-        <h3>@wrap__aura</h3>
-        <p>My handmade crochet brand, founded in 2024. Every post, reel, story, and product photo was created and managed entirely by me — from product development to content strategy and live sales.</p>
-        <a href="https://www.instagram.com/wrap__aura" target="_blank" class="insta-link">View on Instagram →</a>
+    <div class="exp-item">
+      <div class="exp-dot-col"><div class="exp-dot"></div><div class="exp-line"></div></div>
+      <div>
+        <span class="exp-badge badge-sales">Sales</span>
+        <div class="exp-role">Retail Sales Executive</div>
+        <div class="exp-company">Offline Exhibition & Stall Events</div>
+        <div class="exp-period">2024–2025 · Belgaum, KA</div>
+        <ul class="exp-points">
+          <li>Set up and managed product displays, optimising layout to attract and retain customers.</li>
+          <li>Converted walk-in visitors into buyers through confident, direct communication.</li>
+          <li>Handled live transactions and real-time objections under pressure.</li>
+        </ul>
       </div>
     </div>
   </div>
-</section>
-<section id="skills">
-  <div class="reveal">
-    <p class="s-label">Skills & Languages</p>
-    <h2 class="s-title">What I <em>Bring</em></h2>
-    <div class="s-bar"></div>
-  </div>
-  <div class="skills-grid reveal">
-    <div class="skill-group"><div class="skill-group-title">📱 Social & Content</div><span class="skill-tag">Social Media Management</span><span class="skill-tag">Instagram Marketing</span><span class="skill-tag">Content Scheduling</span><span class="skill-tag">Caption Writing</span><span class="skill-tag">Hashtag Research</span><span class="skill-tag">Reels Editing</span></div>
-    <div class="skill-group"><div class="skill-group-title">🤖 AI & Video</div><span class="skill-tag">AI Video Editing</span><span class="skill-tag">AI Content Creation</span><span class="skill-tag">Short-form Video</span><span class="skill-tag">Video Production</span></div>
-    <div class="skill-group"><div class="skill-group-title">🎨 Design & Branding</div><span class="skill-tag">Canva (Intermediate)</span><span class="skill-tag">Graphic Design</span><span class="skill-tag">Carousel Design</span><span class="skill-tag">Brand Identity</span><span class="skill-tag">Visual Storytelling</span></div>
-    <div class="skill-group"><div class="skill-group-title">💼 Marketing & Business</div><span class="skill-tag">Digital Marketing</span><span class="skill-tag">Campaign Support</span><span class="skill-tag">Customer Communication</span><span class="skill-tag">Brand Strategy</span><span class="skill-tag">Exhibition Sales</span></div>
-  </div>
-  <div class="lang-row reveal">
-    <div class="lang-card"><div class="lang-name">English</div><div class="lang-level">Fluent</div></div>
-    <div class="lang-card"><div class="lang-name">Hindi</div><div class="lang-level">Fluent</div></div>
-    <div class="lang-card"><div class="lang-name">Kannada</div><div class="lang-level">Native</div></div>
-    <div class="lang-card"><div class="lang-name">Marathi</div><div class="lang-level">Fluent</div></div>
-  </div>
-</section>
-<section id="education">
-  <div class="reveal">
-    <p class="s-label">Education</p>
-    <h2 class="s-title">Always <em>Learning</em></h2>
-    <div class="s-bar"></div>
-  </div>
-  <div class="edu-grid reveal">
-    <div class="edu-card"><div class="edu-badge">2026 – Present</div><div class="edu-degree">B.A. in Psychology</div><div class="edu-inst">Kristu Jayanti College, Bangalore</div><div class="edu-focus">Focus: Consumer Behaviour, Human Psychology, Communication Theory, Research Methods — applied directly to marketing and audience understanding.</div></div>
-    <div class="edu-card"><div class="edu-badge">Completed 2026</div><div class="edu-degree">12th Grade — Arts & Humanities</div><div class="edu-inst">Karnataka State Board · Belgaum, KA</div><div class="edu-focus">Humanities stream with a strong foundation in communication, critical thinking, and social sciences.</div></div>
-  </div>
-</section>
-<section id="contact">
-  <div style="position:relative;z-index:1;">
-    <p class="s-label">Let's Connect</p>
-    <h2 class="s-title">Open for <em>Work</em></h2>
-    <div class="s-bar"></div>
-    <p class="contact-desc">Available for remote roles in social media, content creation, digital marketing, and AI video editing.</p>
-    <div class="contact-links">
-      <a href="mailto:nagaralinamita@gmail.com" class="contact-btn cb-rose">✉ Email Me</a>
-      <a href="tel:+918867797884" class="contact-btn cb-out">📞 +91 88677 97884</a>
-      <a href="https://www.linkedin.com/in/namita-nagarali-73b576375" target="_blank" class="contact-btn cb-out">in LinkedIn</a>
+</div>
+
+<hr class="section-divider">
+
+<div class="section fade-in" id="skills">
+  <div class="section-tag">Skills</div>
+  <div class="section-title">What I <em>Bring</em></div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-label">Social & Content</div>
+      <div class="skill-tags">
+        <span class="tag">Social Media Management</span>
+        <span class="tag">Instagram Marketing</span>
+        <span class="tag">Content Scheduling</span>
+        <span class="tag">Caption Writing</span>
+        <span class="tag">Hashtag Research</span>
+        <span class="tag">Reels Editing</span>
+      </div>
     </div>
-    <div class="footer-note">Belgaum, Karnataka · Open for Remote Work · © 2026 Namita Nagarali</div>
+    <div class="skill-group">
+      <div class="skill-group-label">Design & Branding</div>
+      <div class="skill-tags">
+        <span class="tag">Canva</span>
+        <span class="tag">Graphic Design</span>
+        <span class="tag">Carousel Design</span>
+        <span class="tag">Brand Identity</span>
+        <span class="tag">Visual Storytelling</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Video & AI</div>
+      <div class="skill-tags">
+        <span class="tag">AI Video Editing</span>
+        <span class="tag">Short-form Video</span>
+        <span class="tag">AI Content Creation</span>
+        <span class="tag">Video Production</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-label">Marketing & Business</div>
+      <div class="skill-tags">
+        <span class="tag">Digital Marketing</span>
+        <span class="tag">Campaign Support</span>
+        <span class="tag">Brand Strategy</span>
+        <span class="tag">Customer Communication</span>
+        <span class="tag">Exhibition Sales</span>
+      </div>
+    </div>
   </div>
-</section>
+  <div class="lang-row">
+    <div class="lang-pill"><div><div class="lang-name">English</div><div class="lang-level">Fluent</div></div></div>
+    <div class="lang-pill"><div><div class="lang-name">Hindi</div><div class="lang-level">Fluent</div></div></div>
+    <div class="lang-pill"><div><div class="lang-name">Kannada</div><div class="lang-level">Native</div></div></div>
+    <div class="lang-pill"><div><div class="lang-name">Marathi</div><div class="lang-level">Fluent</div></div></div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<div class="section fade-in" id="work">
+  <div class="section-tag">Portfolio</div>
+  <div class="section-title">My <em>Work</em></div>
+  <div class="portfolio-tabs">
+    <button class="tab-btn active" data-tab="posters">VRNN Posters</button>
+    <button class="tab-btn" data-tab="videos">Videos</button>
+    <button class="tab-btn" data-tab="wrapura">WrapAura</button>
+  </div>
+  <div class="portfolio-grid" id="portfolio-grid">
+    <div class="port-card visible" data-tab="posters">
+      <img class="port-img" src="https://namitanagarali.github.io/namita-nagarali.github.io/poster1.png" alt="VRNN Poster 1" loading="lazy">
+      <div class="port-info"><div class="port-label">VRNN — Campaign Poster</div></div>
+    </div>
+    <div class="port-card visible" data-tab="posters">
+      <img class="port-img" src="https://namitanagarali.github.io/namita-nagarali.github.io/poster2.png" alt="VRNN Poster 2" loading="lazy">
+      <div class="port-info"><div class="port-label">VRNN — Campaign Poster</div></div>
+    </div>
+    <div class="port-card visible" data-tab="posters">
+      <img class="port-img" src="https://namitanagarali.github.io/namita-nagarali.github.io/poster3.png" alt="VRNN Poster 3" loading="lazy">
+      <div class="port-info"><div class="port-label">VRNN — Campaign Poster</div></div>
+    </div>
+    <div class="port-card" data-tab="videos">
+      <div class="port-video-wrap"><iframe src="https://drive.google.com/file/d/1aDM1Ddv9rWv30krlHqMk42XsquQiYjsU/preview" allow="autoplay" loading="lazy"></iframe></div>
+      <div class="port-info"><div class="port-label">VRNN — Video</div></div>
+    </div>
+    <div class="port-card" data-tab="videos">
+      <div class="port-video-wrap"><iframe src="https://drive.google.com/file/d/1umm55ZO-ahPeHg84EsDaas_sfi8i6k51/preview" allow="autoplay" loading="lazy"></iframe></div>
+      <div class="port-info"><div class="port-label">VRNN — Video</div></div>
+    </div>
+    <div class="port-card" data-tab="videos">
+      <div class="port-video-wrap"><iframe src="https://drive.google.com/file/d/175FQoJ9WBb_a1bEw8a6-hlegbzCjQ6_M/preview" allow="autoplay" loading="lazy"></iframe></div>
+      <div class="port-info"><div class="port-label">AI Video</div></div>
+    </div>
+    <div class="port-card" data-tab="videos">
+      <div class="port-video-wrap"><iframe src="https://drive.google.com/file/d/1r2jvqOjpZzITfnKRJ8RMCfjWMAJJUSwa/preview" allow="autoplay" loading="lazy"></iframe></div>
+      <div class="port-info"><div class="port-label">AI Video</div></div>
+    </div>
+    <div class="port-card" data-tab="videos">
+      <div class="port-video-wrap"><iframe src="https://drive.google.com/file/d/1rSPlDFG4adZkOgRaliqxLidwm0qQaUTn/preview" allow="autoplay" loading="lazy"></iframe></div>
+      <div class="port-info"><div class="port-label">AI Video</div></div>
+    </div>
+    <div class="port-card" data-tab="videos">
+      <div class="port-video-wrap"><iframe src="https://drive.google.com/file/d/1Xi2J8tmFFEZgnXbxOj5RBBTz7MI87zbx/preview" allow="autoplay" loading="lazy"></iframe></div>
+      <div class="port-info"><div class="port-label">AI Video</div></div>
+    </div>
+    <div class="wrapura-card" data-tab="wrapura">
+      <div class="wrapura-icon">🧶</div>
+      <div>
+        <div class="wrapura-title">@wrap__aura</div>
+        <div class="wrapura-text">My handmade crochet brand, founded in 2024. Every post, reel, story, and product photo was created and managed entirely by me — from product development to content strategy and live sales.</div>
+        <a href="https://www.instagram.com/wrap__aura" target="_blank" class="btn btn-outline" style="font-size:0.8rem;padding:9px 18px;">View on Instagram →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<div class="section fade-in" id="education">
+  <div class="section-tag">Education</div>
+  <div class="section-title">Always <em>Learning</em></div>
+  <div class="edu-list">
+    <div class="edu-card">
+      <div class="edu-year">2026</div>
+      <div>
+        <div class="edu-degree">B.A. in Psychology</div>
+        <div class="edu-school">Kristu Jayanti College, Bangalore</div>
+        <div class="edu-desc">Consumer behaviour, human psychology, communication theory, and research methods — applied directly to marketing and audience understanding.</div>
+      </div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">2026</div>
+      <div>
+        <div class="edu-degree">12th Grade — Arts & Humanities</div>
+        <div class="edu-school">Karnataka State Board · Belgaum, KA</div>
+        <div class="edu-desc">Humanities stream with a strong foundation in communication, critical thinking, and social sciences.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<div class="section fade-in" id="contact">
+  <div class="contact-block">
+    <div class="contact-title">Open for Work</div>
+    <p class="contact-sub">Available for remote roles in social media, content creation, digital marketing, graphic design, and more.</p>
+    <div class="contact-links">
+      <a href="mailto:nagaralinamita@gmail.com" class="contact-link">✉ Email</a>
+      <a href="tel:+918867797884" class="contact-link">📞 Call</a>
+      <a href="https://www.linkedin.com/in/namita-nagarali-73b576375" target="_blank" class="contact-link">in LinkedIn</a>
+    </div>
+  </div>
+</div>
+
+<footer>Belgaum, Karnataka · Open for Remote Work · © 2026 Namita Nagarali</footer>
+
 <script>
-window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('loader').classList.add('hide'),1800);});
-const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
-document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';setTimeout(()=>{ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px';},80);});
-document.querySelectorAll('a,button,.poster-item,.video-item,.ai-item').forEach(el=>{el.addEventListener('mouseenter',()=>{cursor.style.transform='translate(-50%,-50%) scale(2)';ring.style.transform='translate(-50%,-50%) scale(1.5)';ring.style.borderColor='var(--rose)';});el.addEventListener('mouseleave',()=>{cursor.style.transform='translate(-50%,-50%) scale(1)';ring.style.transform='translate(-50%,-50%) scale(1)';ring.style.borderColor='rgba(181,112,91,0.5)';});});
-window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50);});
-function switchTab(btn,tab){document.querySelectorAll('.work-tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.work-panel').forEach(p=>p.classList.remove('active'));btn.classList.add('active');document.getElementById('panel-'+tab).classList.add('active');}
-const obs=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);obs.unobserve(e.target);}});},{threshold:0.08});
-document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>obs.observe(el));
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.port-card, .wrapura-card').forEach(card => {
+        const match = card.dataset.tab === tab;
+        if(card.classList.contains('wrapura-card')) {
+          card.classList.toggle('visible', match);
+          card.style.display = match ? 'flex' : 'none';
+        } else {
+          card.classList.toggle('visible', match);
+        }
+      });
+    });
+  });
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }});
+  }, {threshold:0.1});
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
 </script>
 </body>
 </html>
